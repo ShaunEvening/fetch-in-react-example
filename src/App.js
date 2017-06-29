@@ -11,6 +11,7 @@ class App extends Component {
     }
   }
   render() {
+    const { pokemon, error, textInput } = this.state;
     return (
       <div className="App">
         <div className="App-header">
@@ -26,7 +27,7 @@ class App extends Component {
           <h3>Enter a number to search for a pokemon</h3>
           <div className="input-group">
             <input
-              value={this.state.textInput}
+              value={textInput}
               type="number"
               className="input"
               onChange={ev => this.setState({ textInput: ev.target.value, error: false })}
@@ -39,22 +40,22 @@ class App extends Component {
             </button>
           </div>
           {
-            this.state.error ?
+            error ?
               <div className="error-container">
                 <h3>Oops! something went wrong. Please try again</h3>
               </div> : null
           }
           {
-            this.state.pokemon ?
-            <div className="pokemon-info-card">
-              <h3>You chose</h3>
-              <h1>{this.state.pokemon.name}</h1>
-              <img
-                src={this.state.pokemon.sprites.front_default}
-                alt="pokemon-sprite"
-                className="pokemon-image"
-              />
-            </div> : null
+            pokemon ?
+              <div className="pokemon-info-card">
+                <h3>You chose</h3>
+                <h1>{pokemon.name}</h1>
+                <img
+                  src={pokemon.sprites.front_default}
+                  alt="pokemon-sprite"
+                  className="pokemon-image"
+                />
+              </div> : null
           }
         </div>
       </div>
@@ -62,8 +63,9 @@ class App extends Component {
   }
 
   getPokemon = () => {
-    if (this.state.textInput.length) {
-      const url = `http://pokeapi.co/api/v2/pokemon/${this.state.textInput}`;
+    const { textInput } = this.state;
+    if (textInput.length) {
+      const url = `http://pokeapi.co/api/v2/pokemon/${textInput}`;
 
       //TODO: Add fetch code below
     }
