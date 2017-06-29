@@ -1,24 +1,7 @@
-# Fetch Pokemon
-This repository serves as an exercise in using the fetch api within React.
+# Using Fetch In React
+This repository was created for bridge, a free coding course for women hosted by Rangle.io. For more information on this course [click here.](https://rangle.io/bridge/)
 
-### Getting Started
-
-To get started with this exercise run the following commands:
-```bash
-  # Clone the repository
-  git clone
-
-  # Move into the project directory
-  cd fetch-pokemon
-
-  # Install the project dependencies
-  npm install
-
-  # Launch the application
-  npm run start
-```
-
-### What Are Promises?
+### What Is A Promise?
 
 Promises are a way to respond to asynchronous actions in javascript. A promise, if successful will `resolve` or if failed will `reject`.
 
@@ -123,3 +106,26 @@ class ExampleComponent extends React.Component {
 ```
 
 [See Full CodePen example here](https://codepen.io/ShaunLloyd/pen/owpyQo?editors=1010)
+
+<hr>
+
+### The Exercise
+
+For this exercise we have a react application that takes a number. When this number is submitted, an API call is made to find the pokemon associated with that number. When the pokemon is returned it is stored in state and displayed to the user. If there is an error with the request (maybe there is no associated pokemon) an error message is stored in state and displayed to the user.
+
+Your task is to write the fetch request that will retrieve the pokemon and store it to state or store the error if no pokemon is found.
+
+To get started with this exercise run the following commands:
+```bash
+  # Clone the repository
+  git clone https://github.com/ShaunLloyd/fetch-in-react-example.git
+
+  # Move into the project directory
+  cd fetch-in-react-example
+
+  # Install the project dependencies
+  npm install
+
+  # Launch the application
+  npm run start
+```
