@@ -5,7 +5,7 @@ In this repository we will look at promises, the fetch api, and how to to use th
 
 ### What Is A Promise?
 
-Promises are a way to respond asynchronously to something in javascript. Whenever the code inside a promise is completed the promise will `resolve` and we can run code in response to that completion. however, if the code inside the promise fails in some way the promise will `reject` and we can decide how to handle that error.
+Promises are a way to handle asynchronous actions in javascript. Whenever the code inside a promise is completed the promise will `resolve` and we can run code in response to that completion. however, if the code inside the promise fails in some way the promise will `reject` and we can decide how to handle that error.
 
 Consider the code snippet below. `promiseFunc` is a function that takes a string named `phrase` as a parameter and returns a promise. Inside of that promise we check whether or not `phrase` is an empty string. If `phrase` is not empty we wait 5 seconds before resolving the promise. However if `phrase` is empty, the promise is rejected with an error message.
 
