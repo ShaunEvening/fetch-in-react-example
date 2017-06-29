@@ -131,3 +131,7 @@ To get started with this exercise run the following commands:
   # Launch the application
   npm run start
 ```
+
+<h2 align="center">
+  <img src="http://i.imgur.com/2RxWI8O.png" width="80%" />
+</h1>
