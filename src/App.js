@@ -78,6 +78,7 @@ class App extends Component {
       })
       .catch(error => console.error(error));
     } else {
+      //wanted to display a UI element here though got no success
       console.log('yay');
     }
   }
