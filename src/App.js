@@ -67,7 +67,14 @@ class App extends Component {
     if (textInput.length) {
       const url = `http://pokeapi.co/api/v2/pokemon/${textInput}`;
 
-      //TODO: Add fetch code below
+      fetch(url).then(response => {
+                if (!response.ok) {
+                    throw response;
+                  }
+                  return response.json()
+                })
+                .then(data => this.setState({pokemon: data}))
+                .catch(error => this.setState({error: true, textInput:'', pokemon: null}));
     }
   }
 }
