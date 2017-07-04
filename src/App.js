@@ -16,7 +16,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h1>Pokemon Search</h1>
-          <h2>Gotta fetch 'em all!</h2>
+          <h2>Gotta fetch em all!</h2>
           <div className="pokeball">
             <div className="pokeball-bottom" />
             <div className="pokeball-band" />
@@ -68,8 +68,32 @@ class App extends Component {
       const url = `http://pokeapi.co/api/v2/pokemon/${textInput}`;
 
       //TODO: Add fetch code below
+      return fetch(url)
+      .then(response => {
+        console.log(response)
+        if(!response.ok) {
+          throw {
+            message: 'Error thrown',
+            status: response.status
+           }
+        }
+        return response.json();
+      })
+       .then(data => {
+          this.setState({
+           pokemon: data
+          })
+       })
+       .catch(err => {
+          console.error(err)
+          this.setState({
+            pokemon: null,
+            error: true
+          })
+       })
     }
   }
+  
 }
 
 export default App;
