@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import { setPokemon } from './actions';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(props) {
@@ -10,13 +12,15 @@ class App extends Component {
       textInput: '',
     }
   }
+
   render() {
+    console.log(this.props.setPokemon);
     const { pokemon, error, textInput } = this.state;
     return (
       <div className="App">
         <div className="App-header">
           <h1>Pokemon Search</h1>
-          <h2>Gotta fetch 'em all!</h2>
+          <h2>Gotta fetch em all!</h2>
           <div className="pokeball">
             <div className="pokeball-bottom" />
             <div className="pokeball-band" />
@@ -34,7 +38,7 @@ class App extends Component {
             />
             <button
               className="submit-button"
-              onClick={this.getPokemon}
+              onClick={ this.props.setPokemon }
             >
               Search Pokemon
             </button>
@@ -72,4 +76,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = {
+  setPokemon: setPokemon,
+}
+
+export default connect((state, props) => props, mapDispatchToProps)(App);
