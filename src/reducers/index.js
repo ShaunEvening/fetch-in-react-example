@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
 
-const pokemon = (state = null, action) => state;
+import { INPUT_CHANGE } from '../actions';
 
-const error = (state = false, action) => state;
+const textInput = (state = '', action) => {
+  if(action.type === INPUT_CHANGE) {
+    return action.payload
+  }
 
-const textInput = (state = '', action) => state;
+  return state;
+};
 
 export default combineReducers({
-  pokemon,
-  error,
   textInput
 });

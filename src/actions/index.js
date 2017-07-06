@@ -1,8 +1,6 @@
-const action = (type, payload = {}) => ({
-  type,
-  payload
-})
+export const INPUT_CHANGE = 'INPUT_CHANGE';
 
-export const SET_POKEMON = 'SET_POKEMON';
-
-export const setPokemon = pokemon => action(SET_POKEMON, pokemon)
+export const inputChange = value => ({
+  type: INPUT_CHANGE,
+  payload: value,
+});
