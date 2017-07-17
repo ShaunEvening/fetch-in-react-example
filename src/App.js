@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+
+import { inputChange, getPoke } from './actions';
+
 
 class App extends Component {
   constructor(props) {
@@ -10,13 +14,17 @@ class App extends Component {
       textInput: '',
     }
   }
+
   render() {
-    const { pokemon, error, textInput } = this.state;
+    const { textInput, onTextInputChange, onBtnClick, pokemon} = this.props;
+    const { error } = this.state;
+    // console.log(22, 'new poke',pokemon, this.props)
+
     return (
       <div className="App">
         <div className="App-header">
           <h1>Pokemon Search</h1>
-          <h2>Gotta fetch 'em all!</h2>
+          <h2>Gotta fetch em all!</h2>
           <div className="pokeball">
             <div className="pokeball-bottom" />
             <div className="pokeball-band" />
@@ -30,11 +38,13 @@ class App extends Component {
               value={textInput}
               type="number"
               className="input"
-              onChange={ev => this.setState({ textInput: ev.target.value, error: false })}
+              onChange={ev => onTextInputChange(ev.target.value)}
             />
             <button
               className="submit-button"
-              onClick={this.getPokemon}
+              onClick={ ()=> {
+                console.log('button clicked', textInput)
+                onBtnClick(textInput)} }
             >
               Search Pokemon
             </button>
@@ -61,15 +71,18 @@ class App extends Component {
       </div>
     );
   }
-
-  getPokemon = () => {
-    const { textInput } = this.state;
-    if (textInput.length) {
-      const url = `http://pokeapi.co/api/v2/pokemon/${textInput}`;
-
-      //TODO: Add fetch code below
-    }
-  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  // console.log(92, 'state2prop', state);
+  return {
+  textInput: state.textInput,
+  pokemon: state.pokemon,
+
+}}
+const actions = {
+  onTextInputChange: inputChange,
+  onBtnClick: getPoke,
+}
+
+export default connect(mapStateToProps, actions)(App);
