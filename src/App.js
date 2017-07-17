@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 
-import { inputChange } from './actions';
+import { inputChange, getPoke } from './actions';
+
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +16,10 @@ class App extends Component {
   }
 
   render() {
-    const { textInput, onTextInputChange } = this.props;
-    const { pokemon, error } = this.state;
+    const { textInput, onTextInputChange, onBtnClick, pokemon} = this.props;
+    const { error } = this.state;
+    // console.log(22, 'new poke',pokemon, this.props)
+
     return (
       <div className="App">
         <div className="App-header">
@@ -39,7 +42,9 @@ class App extends Component {
             />
             <button
               className="submit-button"
-              onClick={ this.getPokemon }
+              onClick={ ()=> {
+                console.log('button clicked', textInput)
+                onBtnClick(textInput)} }
             >
               Search Pokemon
             </button>
@@ -66,28 +71,18 @@ class App extends Component {
       </div>
     );
   }
-
-  getPokemon = () => {
-    const { textInput } = this.state;
-    if (textInput.length) {
-      const url = `http://pokeapi.co/api/v2/pokemon/${textInput}`;
-      console.log(textInput);
-      fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          pokemon: data
-        })
-      })
-    }
-  }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  // console.log(92, 'state2prop', state);
+  return {
   textInput: state.textInput,
-})
+  pokemon: state.pokemon,
+
+}}
 const actions = {
   onTextInputChange: inputChange,
+  onBtnClick: getPoke,
 }
 
 export default connect(mapStateToProps, actions)(App);
